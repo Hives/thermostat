@@ -42,6 +42,10 @@ Thermostat.prototype = {
   },
 
   energyUsage: function() {
-    return "low";
+    if (this.temperature < 18) {
+      return "low";
+    } else {
+      return "medium";
+    }
   }
 };

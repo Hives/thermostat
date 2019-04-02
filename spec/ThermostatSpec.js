@@ -55,6 +55,11 @@ describe("Thermostat", function() {
         expect(thermostat.energyUsage()).toEqual("medium");
     });
 
+    it("returns high energy usage level for 25", function() {
+        thermostat.temperature = 25;
+        expect(thermostat.energyUsage()).toEqual("high");
+    });
+
     describe("if power saving mode is on", function() {
         it("does not go above 25 degrees", function() {
             thermostat.powerSavingOn();
