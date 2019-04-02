@@ -1,8 +1,16 @@
 describe("Thermostat", function() {
     var thermostat;
+    var defaultTemp;
+    var minTemp;
+    var powerSavingMax;
+    var powerSpendingMax;
     
     beforeEach(function() {
         thermostat = new Thermostat();
+        defaultTemp = thermostat.defaultTemp;
+        minTemp = thermostat.minTemp;
+        powerSavingMax = thermostat.powerSavingMax;
+        powerSpendingMax = thermostat.powerSpendingMax;
     });
     
     describe("initial thermostat state", function() {
@@ -11,8 +19,8 @@ describe("Thermostat", function() {
             expect(thermostat.temperature).toEqual(25);
         });
 
-        it("should have a temperature of 20 degrees when initialised", function() {
-            expect(thermostat.temperature).toEqual(20);
+        it("should have the default temperature", function() {
+            expect(thermostat.temperature).toEqual(defaultTemp);
         });
     });
 
@@ -28,20 +36,25 @@ describe("Thermostat", function() {
 
     it("does not go below 10 degrees", function() {
         thermostat.decrease(11);
-        expect(thermostat.temperature).toEqual(10);
+        expect(thermostat.temperature).toEqual(minTemp);
     });
 
     it("the reset function restores the default temperature", function() {
         thermostat.increase(5);
         thermostat.reset();
-        expect(thermostat.temperature).toEqual(20);
+        expect(thermostat.temperature).toEqual(defaultTemp);
+    });
+
+    it("returns low energy usage level", function() {
+        thermostat.decrease(3);
+        expect(thermostat.energyUsage()).toEqual("low");
     });
 
     describe("if power saving mode is on", function() {
         it("does not go above 25 degrees", function() {
             thermostat.powerSavingOn();
             thermostat.increase(6);
-            expect(thermostat.temperature).toEqual(25);
+            expect(thermostat.temperature).toEqual(powerSavingMax);
         });
     });
 
@@ -55,7 +68,7 @@ describe("Thermostat", function() {
         it("does not go above 32 degrees", function() {
             thermostat.powerSavingOff();
             thermostat.increase(13);
-            expect(thermostat.temperature).toEqual(32);
+            expect(thermostat.temperature).toEqual(powerSpendingMax);
         });
     });
 

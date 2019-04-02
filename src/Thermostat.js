@@ -1,8 +1,10 @@
 function Thermostat() {
-  this.temperature = 20;
+  this.defaultTemp = 20;
+  this.temperature = this.defaultTemp;
   this._powerSaving = true;
   this.powerSavingMax = 25;
   this.powerSpendingMax = 32;
+  this.minTemp = 10;
 };
 
 Thermostat.prototype = {
@@ -18,20 +20,24 @@ Thermostat.prototype = {
             this.temperature = this.powerSpendingMax;
         }
     }
-  }
-};
+  },
 
-// Different syntax for creating function for learning purposes
-Thermostat.prototype.decrease = function(change) {
-  this.temperature -= change;
-  if (this.temperature < 10) {
-    this.temperature = 10;
-  }
-};
+  reset: function() {
+    this.temperature = this.defaultTemp;
+  },
+  
+  decrease: function(change) {
+    this.temperature -= change;
+    if (this.temperature < this.minTemp) {
+      this.temperature = this.minTemp;
+    }
+  },
 
-Thermostat.prototype.powerSavingOff = function() {
-  this._powerSaving = false;
-};
-Thermostat.prototype.powerSavingOn = function() {
-  this._powerSaving = true;
+  powerSavingOff: function() {
+    this._powerSaving = false;
+  },
+
+  powerSavingOn: function() {
+    this._powerSaving = true;
+  }
 };
