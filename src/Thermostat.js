@@ -22,10 +22,6 @@ Thermostat.prototype = {
     }
   },
 
-  reset: function() {
-    this.temperature = this.defaultTemp;
-  },
-  
   decrease: function(change) {
     this.temperature -= change;
     if (this.temperature < this.minTemp) {
@@ -33,11 +29,19 @@ Thermostat.prototype = {
     }
   },
 
+  reset: function() {
+    this.temperature = this.defaultTemp;
+  },
+  
   powerSavingOff: function() {
     this._powerSaving = false;
   },
 
   powerSavingOn: function() {
     this._powerSaving = true;
+  },
+
+  energyUsage: function() {
+    return "low";
   }
 };
