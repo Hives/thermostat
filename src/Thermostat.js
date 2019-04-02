@@ -6,6 +6,9 @@ Thermostat.prototype = {
   constructor: Thermostat,
   increase: function(change) {
     this.temperature += change;
+    if (this.temperature > 25) {
+      this.temperature = 25;
+    }
   }
 };
 

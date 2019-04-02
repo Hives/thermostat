@@ -31,4 +31,12 @@ describe("Thermostat", function() {
         });
     });
 
+    describe("if power saving mode is off", function() {
+        it("allows temperature to go to 26", function() {
+            thermostat.powerSavingOff();
+            thermostat.increase(6);
+            expect(thermostat.temperature).toEqual(26);
+        });
+    });
+
 });
