@@ -50,6 +50,11 @@ describe("Thermostat", function() {
         expect(thermostat.energyUsage()).toEqual("low");
     });
 
+    it("if temp = 24 `energyUsage` is medium", function() {
+        thermostat.temperature = 24;
+        expect(thermostat.energyUsage()).toEqual("medium");
+    });
+
     it("if temp = 19 `energyUsage` is medium", function() {
         thermostat.decrease(1);
         expect(thermostat.energyUsage()).toEqual("medium");
