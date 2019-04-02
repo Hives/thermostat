@@ -23,4 +23,12 @@ describe("Thermostat", function() {
         thermostat.decrease(11);
         expect(thermostat.temperature).toEqual(10);
     });
+
+    describe("if power saving mode is on", function() {
+        it("does not go above 25 degrees", function() {
+            thermostat.increase(6);
+            expect(thermostat.temperature).toEqual(25);
+        });
+    });
+
 });
