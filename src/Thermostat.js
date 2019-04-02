@@ -9,6 +9,8 @@ Thermostat.prototype = {
     this.temperature += change;
     if (this.powerSaving && this.temperature > 25) {
         this.temperature = 25;
+    } else if (!this.powerSaving && this.temperature > 32) {
+      this.temperature = 32;
     }
   }
 };

@@ -5,8 +5,14 @@ describe("Thermostat", function() {
         thermostat = new Thermostat();
     });
     
-    it("should have a temperature of 20 degrees when initialised", function() {
-        expect(thermostat.temperature).toEqual(20);
+    describe("initial thermostat state", function() {
+        it("should have powerSaving on", function() {
+            expect(thermostat.powerSaving).toEqual(true);
+        });
+
+        it("should have a temperature of 20 degrees when initialised", function() {
+            expect(thermostat.temperature).toEqual(20);
+        });
     });
 
     it("increases temperature", function() {
@@ -26,6 +32,7 @@ describe("Thermostat", function() {
 
     describe("if power saving mode is on", function() {
         it("does not go above 25 degrees", function() {
+            thermostat.powerSavingOn();
             thermostat.increase(6);
             expect(thermostat.temperature).toEqual(25);
         });
