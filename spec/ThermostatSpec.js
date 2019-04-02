@@ -1,7 +1,16 @@
 describe("Thermostat", function() {
     var thermostat;
-    it("should have a temperature of 20 degrees when initialised", function() {
+    
+    beforeEach(function() {
         thermostat = new Thermostat();
+    });
+    
+    it("should have a temperature of 20 degrees when initialised", function() {
         expect(thermostat.temperature).toEqual(20);
+    });
+
+    it("increases temperature", function() {
+        thermostat.increase(1);
+        expect(thermostat.temperature).toEqual(21);
     });
 });
