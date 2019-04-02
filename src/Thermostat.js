@@ -8,3 +8,8 @@ Thermostat.prototype = {
         this.temperature += change;
     }
 };
+
+// Different syntax for creating function for learning purposes
+Thermostat.prototype.decrease = function(change) {
+  this.temperature -= change;
+};

@@ -14,8 +14,13 @@ describe("Thermostat", function() {
         expect(thermostat.temperature).toEqual(21);
     });
 
-    it("decreasese temperature", function() {
+    it("decreases temperature", function() {
         thermostat.decrease(1);
         expect(thermostat.temperature).toEqual(19);
+    });
+
+    it("does not go below 10 degrees", function() {
+        thermostat.decrease(11);
+        expect(thermostat.temperature).toEqual(10);
     });
 });
