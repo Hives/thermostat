@@ -7,7 +7,8 @@ describe("Thermostat", function() {
     
     describe("initial thermostat state", function() {
         it("should have powerSaving on", function() {
-            expect(thermostat.powerSaving).toEqual(true);
+            thermostat.increase(6)
+            expect(thermostat.temperature).toEqual(25);
         });
 
         it("should have a temperature of 20 degrees when initialised", function() {
@@ -28,6 +29,12 @@ describe("Thermostat", function() {
     it("does not go below 10 degrees", function() {
         thermostat.decrease(11);
         expect(thermostat.temperature).toEqual(10);
+    });
+
+    it("the reset function restores the default temperature", function() {
+        thermostat.increase(5);
+        thermostat.reset();
+        expect(thermostat.temperature).toEqual(20);
     });
 
     describe("if power saving mode is on", function() {
