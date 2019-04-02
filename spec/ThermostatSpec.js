@@ -37,6 +37,12 @@ describe("Thermostat", function() {
             thermostat.increase(6);
             expect(thermostat.temperature).toEqual(26);
         });
+
+        it("does not go above 32 degrees", function() {
+            thermostat.powerSavingOff();
+            thermostat.increase(13);
+            expect(thermostat.temperature).toEqual(32);
+        });
     });
 
 });
